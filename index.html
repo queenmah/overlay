@@ -71,26 +71,47 @@
   <div class="social instagram animate__animated">
     <i class="fa-brands fa-instagram"></i> MarcelaNMeneses
   </div>
-  <div class="social tiktok active animate__animated animate__jackInTheBox">
+
+  <div class="social tiktok animate__animated">
     <i class="fa-brands fa-tiktok"></i> _QueenMah
+  </div>
+
+  <div class="social twitter animate__animated">
+    <i class="fa-brands fa-twitter"></i> _QueenMah
   </div>
 </div>
 
 <script>
   let animClass = 'animate__jackInTheBox'
+  let currentSocial = 'instagram'
 
-  let toggleStuff = function() {
+  function toggleSocials() {
+    switch (currentSocial) {
+      case 'instagram':
+        currentSocial = 'tiktok'
+        break;
+      case 'tiktok':
+        currentSocial = 'twitter'
+        break;
+      case 'twitter':
+        currentSocial = 'instagram'
+        break;
+    }
 
-    document.querySelectorAll('.social').forEach(social => {
-      setTimeout(() => {
-        social.classList.toggle('active')
-        social.classList.toggle(animClass)
-      }, 500)
-
-    })
+    setActiveSocial(document.getElementsByClassName(currentSocial)[0])
   }
 
-  setInterval(toggleStuff, 4000)
+  setInterval(toggleSocials, 4000)
+
+  let setActiveSocial = function(active) {
+    document.querySelectorAll('.social').forEach(social => {
+      social.classList.remove('active')
+      social.classList.remove(animClass)
+    })
+
+    active.classList.add('active')
+    active.classList.add(animClass)
+  }
 
   let showCode = function() {
     document.querySelector('.code div').classList.remove('animate__zoomOutDown')
