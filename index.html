@@ -56,9 +56,11 @@
 </style>
 
 <div class="code">
-  <i>Use Code</i>
-  <br>
-  <b>QueenMah</b>
+  <div class="animate__animated">
+    <i>Use Code</i>
+    <br>
+    <b>QueenMah</b>
+  </div>
 </div>
 
 <div class="bar">
@@ -73,9 +75,7 @@
 <script>
   let animClass = 'animate__jackInTheBox'
 
-  console.log(document.querySelectorAll('.social'))
-
-  let showTikTok = function() {
+  let toggleStuff = function() {
 
     document.querySelectorAll('.social').forEach(social => {
       setTimeout(() => {
@@ -84,9 +84,23 @@
       }, 500)
 
     })
-
-    console.log(document.querySelectorAll('.social'))
   }
 
-  setInterval(showTikTok, 4000)
+  setInterval(toggleStuff, 4000)
+
+  let showCode = function() {
+    document.querySelector('.code div').classList.remove('animate__zoomOutDown')
+    document.querySelector('.code div').classList.add('animate__bounceInLeft')
+    setTimeout(hideCode, 5000)
+  }
+
+  let hideCode = function() {
+    document.querySelector('.code div').classList.remove('animate__bounceInLeft')
+    document.querySelector('.code div').classList.add('animate__zoomOutDown')
+
+
+    setTimeout(showCode, 1500)
+  }
+
+  setTimeout(showCode, 1000)
 </script>
